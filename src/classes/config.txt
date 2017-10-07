@@ -1,0 +1,48 @@
+Asia, 7
+1, Middle East, 783, 361, Egypt, India, Ukraine, Afghanistan
+2, India, 886, 364, Middle East, Afghanistan, Siam, China
+3, Siam, 1013, 434, Indonesia, India, China
+4, Afghanistan, 828, 258, Ukraine, Middle East, India, China, Siberia, Ural
+5, China, 1027, 343, Siam, India, Afghanistan, Siberia, Mongolia
+6, Ural, 867, 148, Ukraine, Afghanistan, Siberia
+7, Siberia, 946, 220, Ural, Afghanistan, China, Mongolia, Irkutsk, Yakutsk
+8, Mongolia, 1072, 277, China, Siberia, Irkutsk, Kamchatka, Japan
+9, Japan, 1132, 290, Mongolia, Kamchatka
+10, Irkutsk, 1033, 178, Mongolia, Kamchatka, Yakutsk, Siberia
+11, Yakutsk,  1048, 93, Siberia, Irkutsk, Kamchatka
+12, Kamchatka, 1103, 145, Alaska, Japan, Mongolia, Irkutsk, Yakutsk
+North America, 5
+13, Alaska, 77, 119, Northwest Territory, Alberta, Kamchatka
+14, Northwest Territory, 147, 143, Alaska, Alberta, Ontario, Greenland
+15, Alberta, 152, 259, Alaska, Northwest Territory, Ontario, Western United States
+16, Ontario, 213, 275, Alberta, Northwest Territory, Greenland, Quebec, Western United States, Eastern United States
+17, Quebec, 272, 280, Greenland, Ontario, Eastern United States
+18, Greenland, 373, 170, Iceland, Northwest Territory, Ontario, Quebec
+19, Western United States, 154, 357, Central America, Eastern United States, Ontario
+20, Eastern United States, 276, 346, Western United States, Ontario, Quebec
+21, Central America, 147, 424, Western United States, Venezuela
+South America, 2
+22, Venezuela, 329, 511, Central America, Brazil, Argentina
+23, Argentina, 361, 634, Venezuela, Brazil
+24, Brazil, 372, 573, Venezuela, Argentina, North Africa
+Europe, 5
+25, Iceland, 521, 203, Greenland, Great Britain
+26, Great Britain, 600, 222, Iceland, Scandinavia, Northern Europe, Western Europe
+27, Western Europe, 613, 293, North Africa, Southern Europe, Northern Europe, Great Britain
+28, Scandinavia, 679, 165, Great Britain, Northern Europe, Ukraine
+29, Northern Europe, 688, 277, Great Britain, Western Europe, Southern Europe, Ukraine, Scandinavia
+30, Southern Europe, 696, 327, Western Europe, Northern Europe, Ukraine, North Africa, Egypt
+31, Ukraine, 762, 216, Scandinavia, Northern Europe, Southern Europe, Middle East, Afghanistan, Ural
+Africa, 3
+32, North Africa, 588, 467, Western Europe, Southern Europe, Egypt, Congo, Brazil
+33, Egypt, 737, 468, North Africa, Southern Europe, Middle East, Congo, East Africa
+34, Congo, 682, 509, North Africa, Egypt, East Africa, South Africa
+35, East Africa, 759, 570, Egypt, Congo, South Africa, Madagascar
+36, South Africa, 717, 639, Congo, East Africa, Madagascar
+37, Madagascar, 823, 605, South Africa, East Africa
+Australia, 2
+38, Indonesia, 1061, 480, Siam, New Guinea, Western Australia
+39, Western Australia, 1114, 577, Indonesia, Eastern Australia, New Guinea
+40, New Guinea, 1170, 524, Indonesia, Western Australia, Eastern Australia
+41, Eastern Australia, 1176, 637, LotR, Western Australia, New Guinea
+42, LotR, 1242, 652, Eastern Australia

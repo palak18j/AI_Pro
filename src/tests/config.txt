@@ -1,0 +1,42 @@
+Middle East, Egypt, India, Ukraine, Afghanistan
+India, Middle East, Afghanistan, Siam, China
+Siam, Indonesia, India, China
+Afghanistan, Ukraine, Middle East, India, China, Siberia, Ural
+China, Siam, India, Afghanistan, Siberia, Mongolia
+Ural, Ukraine, Afghanistan, Siberia
+Siberia, Ural, Afghanistan, China, Mongolia, Irkutsk, Yakutsk
+Mongolia, China, Siberia, Irkutsk, Kamchatka, Japan
+Japan, Mongolia, Kamchatka
+Irkutsk, Mongolia, Kamchatka, Yakutsk, Siberia
+Yakutsk, Siberia, Irkutsk, Kamchatka
+Kamchatka, Alaska, Japan, Mongolia, Irkutsk, Yakutsk
+Alaska, Northwest Territory, Alberta, Kamchatka
+Northwest Territory, Alaska, Alberta, Ontario, Greenland
+Alberta, Alaska, Northwest Territory, Ontario, Western United States
+Ontario, Alberta, Northwest Territory, Greenland, Quebec, Western United States, Eastern United States
+Quebec, Greenland, Ontario, Eastern United States
+Greenland, Iceland, Northwest Territory, Ontario, Quebec
+Western United States, Central America, Eastern United States, Ontario
+Eastern United States, Western United States, Ontario, Quebec
+Central America, Western United States, Venezuela
+Venezuela, Central America, Brazil, Argentina
+Argentina, Venezuela, Brazil
+Brazil, Venezuela, Argentina, North Africa
+Iceland, Greenland, Great Britain
+Great Britain, Iceland, Scandinavia, Northern Europe, Western Europe
+Western Europe, North Africa, Southern Europe, Northern Europe, Great Britain
+Scandinavia, Great Britain, Northern Europe, Ukraine
+Northern Europe, Great Britain, Western Europe, Southern Europe, Ukraine, Scandinavia
+Southern Europe, Western Europe, Northern Europe, Ukraine, North Africa, Egypt
+Ukraine, Scandinavia, Northern Europe, Southern Europe, Middle East, Afghanistan, Ural
+North Africa, Western Europe, Southern Europe, Egypt, Congo, Brazil
+Egypt, North Africa, Southern Europe, Middle East, Congo, East Africa
+Congo, North Africa, Egypt, East Africa, South Africa
+East Africa, Egypt, Congo, South Africa, Madagascar
+South Africa, Congo, East Africa, Madagascar
+Madagascar, South Africa, East Africa
+Indonesia, Siam, New Guinea, Western Australia
+Western Australia, Indonesia, Eastern Australia, New Guinea
+New Guinea, Indonesia, Western Australia, Eastern Australia
+Eastern Australia, LotR, Western Australia, New Guinea
+LotR, Eastern Australia
