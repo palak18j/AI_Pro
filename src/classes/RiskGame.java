@@ -8,6 +8,7 @@
 package classes;
 
 import java.awt.Color;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -134,6 +135,7 @@ public class RiskGame
 		currentPlayer.addTerritory( newTerritory );
 		currentPlayer.addArmies( -1 );
 		newTerritory.setNumArmies( 1 );
+                newTerritory.setStatus(1);      //since now chosen(palak)
 	}
 
 	/**
@@ -203,7 +205,18 @@ public class RiskGame
 	{
 		return currentPlayer;
 	}
-
+        
+        public Map<String, Territory> getUnselectedTerritoriesList()
+	{       
+            //returns currently unchosen territories from map
+		Map<String, Territory> territories= gameBoard.getTerritoriesList(),t1=new HashMap<String, Territory>();
+                for(String s:territories.keySet()){
+                    Territory t=territories.get(s);
+                    if(t.status==-1)
+                        t1.put(t.getName(), t);
+                }
+                return t1;
+	}
 	/**
 	 * Turns in cards from the current player with the associated indices
 	 */

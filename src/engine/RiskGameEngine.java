@@ -31,7 +31,7 @@ public class RiskGameEngine extends Observable
 
 	public RiskGameEngine()
 	{
-            System.out.println("here 2");
+            //System.out.println("here 2");
             this.state = State.loadStartScreen;
 		game = new RiskGame();
 	}
@@ -64,7 +64,8 @@ public class RiskGameEngine extends Observable
 	 * @param names
 	 */
 	public void createPlayers( Map<String, Color> playerInfo, String gameName )
-	{
+	{   
+            System.out.println("at createPlayers in RGE, size="+playerInfo.size()+"; gameName="+gameName);
 		if ( game.createPlayers( playerInfo, gameName  ) ) 
 		{
 			this.state = State.assignTerritories;
@@ -150,9 +151,15 @@ public class RiskGameEngine extends Observable
 	 * @param territory String name of territory to add. 
 	 */
 	public void addTerritory( String territory )
-	{
+	{   
+            System.out.println("in RGE.addTerriory()");
+            Map<String, Territory> map=this.getGame().getUnselectedTerritoriesList();
+            System.out.println("size="+map.size());
+            
 		if( game.getCurrentPlayer() != null )
 			game.addTerritory( territory );
+                else
+                    System.out.println("null player encountered");
 		
 	}
 	public void incrementTroops( String territory )

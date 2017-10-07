@@ -17,7 +17,7 @@ public class Risk
 			@Override
 			public void run()
 			{
-                            System.out.println("here");
+                            //System.out.println("here");
                             createAndShowGUI();
 			}
 		} );
@@ -25,8 +25,8 @@ public class Risk
 	
 	public static void createAndShowGUI()
 	{
-            System.out.println("invoked here");
-                            System.out.println("shutup");
+           // System.out.println("invoked here");
+                           // System.out.println("shutup");
             RiskGameEngine gameEngine = new RiskGameEngine();
 		
                 GameGUI gui = new GameGUI( gameEngine );

@@ -1,10 +1,3 @@
-/**
- * CSCI 2120 Fall 2014
- * Risk Game Class Territory
- * @author Shane McCulley
- * @date October 21, 2014
- **/
-
 package classes;
 
 import java.awt.Point;
@@ -22,12 +15,22 @@ public class Territory
 	private Map<String, Territory> neighbors;
 	private Point circleCenter;
 	private Continent continent;
+        int status;             //intially territory is unassigned
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
 	public Territory( String name, Continent continent, Point circleCenter )
 	{
 		this.name = name;
 		this.circleCenter = circleCenter;
 		this.continent = continent;
+                this.status=-1;         //initial status(palak)
 	}
 
 	/**

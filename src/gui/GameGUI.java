@@ -1,12 +1,7 @@
-/**
- * CSCI 2120 Fall 2014
- * Risk Game class RiskGame
- * @author Shane McCulley
- * @date November 29, 2014
- **/
 
 package gui;
 
+import classes.Territory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -16,6 +11,7 @@ import engine.RiskUtils;
 import java.util.Observer;
 import java.util.Observable;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 @SuppressWarnings( "serial" )
 public class GameGUI extends JFrame implements Observer
@@ -109,11 +105,17 @@ public class GameGUI extends JFrame implements Observer
 	 */
 	private void changeScreen( JPanel newCurrentPanel )
 	{
+                System.out.println("came here in changeSCREEN 1 ");
 		this.getContentPane().remove( this.currentPanel );
+                //System.out.println("came here in changeSCREEN 2 ");
 		this.currentPanel = newCurrentPanel;
+                //System.out.println("came here in changeSCREEN 3 ");
 		this.getContentPane().add( this.currentPanel );
+                //System.out.println("came here in changeSCREEN 4 ");
 		this.revalidate();
+                //System.out.println("came here in changeSCREEN 5 ");
 		this.repaint();
+                System.out.println("came here in changeSCREEN 6 ");
 	}
 	
 	
@@ -121,11 +123,11 @@ public class GameGUI extends JFrame implements Observer
 	{
 
 		State state = gameEngine.getState();
-
+                System.out.println("came here in update ");
 		/* attack phase of turn */
 		if( state == State.attack )
 		{
-			
+			System.out.println("attack state");
 			if( obj instanceof String) 
 			{
 				if ( obj.equals( "captured") )
@@ -153,41 +155,50 @@ public class GameGUI extends JFrame implements Observer
 		/*begin fortify phase of turn */
 		else if ( state == State.fortify )
 		{
+                    System.out.println("state fortify");
 			mapScreenHandler.fortify();
 		}
 		else if ( state == State.loadStartScreen ) 
 		{
+                    System.out.println("state loadstart");
 			this.changeScreen( this.startScreen );
 		}
 		else if ( state == State.loadSavedGame ) 
 		{
+                    System.out.println("state loadsaved");
 			if ( currentPanel.getName().equals( "Start Screen" ) )
 				( (StartScreenPanel)currentPanel ).chooseOpenFile();
 
 		}
 		else if ( state == State.createPlayers ) 
 		{
+                    System.out.println("state createPlayers");
 			this.changeScreen( createPlayersScreen );
 		}
 		else if( state == State.assignTerritories )
 		{
+                        System.out.println("state assignT");
 			
 			this.changeScreen( mapScreen );
 			this.pack();
 			this.setLocation( RiskUtils.getRelativeScreenLocation( 0.10, 0.0) );
 			mapScreenHandler.initializeMap();
+                        //System.out.println("here at END");
 					
 		}
 		else if( state == State.assignArmies )
-		{
+		{   
+                    System.out.println("state assignA");
 			mapScreenHandler.assignArmies();
 		}
 		else if( state == State.placeArmies )
 		{
+                    System.out.println("state placeA");
 			mapScreenHandler.placeArmies(); 
 		}
 		else if( state == State.failedInit)
-		{
+		{   
+                    System.out.println("state failed");
 			JOptionPane.showMessageDialog( null, "Game creation failed. "
 					+ "Exiting." );
 			System.exit ( state.value );
@@ -195,6 +206,7 @@ public class GameGUI extends JFrame implements Observer
 		
 		else
 		{
+                    
 			System.out.println( "Shit went wrong" );
 		}
 	}
