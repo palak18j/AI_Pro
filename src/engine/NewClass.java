@@ -5,45 +5,41 @@
  */
 package engine;
 
-import static engine.Risk.createAndShowGUI;
 import gui.GameGUI;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+
+import javax.swing.*;
 
 /**
- *
  * @author lenovo
  */
 public class NewClass {
-    public static void main(String args[]){
+    public static void main(String args[]) {
         System.out.println("hey");
         System.out.println("hhh");
             /* start program on EDT */
-		SwingUtilities.invokeLater( new Runnable()
-		{
-			@Override
-			public void run()
-			{
-                            System.out.println("here");
-                            createAndShowGUI();
-			}
-		} );
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("here");
+                createAndShowGUI();
+            }
+        });
     }
-    public static void createAndShowGUI()
-	{
-            System.out.println("invoked here");
-                            
-            RiskGameEngine gameEngine = new RiskGameEngine();
-		
-                GameGUI gui = new GameGUI( gameEngine );
 
-		gameEngine.addObserver( gui );
+    public static void createAndShowGUI() {
+        System.out.println("invoked here");
 
-		gui.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        RiskGameEngine gameEngine = new RiskGameEngine();
 
-		gui.setSize( RiskUtils.GAME_SIZE );
-		gui.setResizable( false );
-		gui.setLocation( RiskUtils.getStartScreenPosition() );
-		gui.setVisible( true );
-	}
+        GameGUI gui = new GameGUI(gameEngine);
+
+        gameEngine.addObserver(gui);
+
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        gui.setSize(RiskUtils.GAME_SIZE);
+        gui.setResizable(false);
+        gui.setLocation(RiskUtils.getStartScreenPosition());
+        gui.setVisible(true);
+    }
 }

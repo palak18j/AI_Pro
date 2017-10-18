@@ -2,42 +2,36 @@ package engine;
 
 import gui.GameGUI;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
-public class Risk
-{
+public class Risk {
 
-	public static void main( String[] args )
-	{
-                System.out.println("hhh11");
+    public static void main(String[] args) {
+        System.out.println("hhh11");
             /* start program on EDT */
-		SwingUtilities.invokeLater( new Runnable()
-		{
-			@Override
-			public void run()
-			{
-                            //System.out.println("here");
-                            createAndShowGUI();
-			}
-		} );
-	}
-	
-	public static void createAndShowGUI()
-	{
-           // System.out.println("invoked here");
-                           // System.out.println("shutup");
-            RiskGameEngine gameEngine = new RiskGameEngine();
-		
-                GameGUI gui = new GameGUI( gameEngine );
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //System.out.println("here");
+                createAndShowGUI();
+            }
+        });
+    }
 
-		gameEngine.addObserver( gui );
+    public static void createAndShowGUI() {
+        // System.out.println("invoked here");
+        // System.out.println("shutup");
+        RiskGameEngine gameEngine = new RiskGameEngine();
 
-		gui.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        GameGUI gui = new GameGUI(gameEngine);
 
-		gui.setSize( RiskUtils.GAME_SIZE );
-		gui.setResizable( false );
-		gui.setLocation( RiskUtils.getStartScreenPosition() );
-		gui.setVisible( true );
-	}
+        gameEngine.addObserver(gui);
+
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        gui.setSize(RiskUtils.GAME_SIZE);
+        gui.setResizable(false);
+        gui.setLocation(RiskUtils.getStartScreenPosition());
+        gui.setVisible(true);
+    }
 }
