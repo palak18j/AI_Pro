@@ -3,6 +3,9 @@ package engine;
 import gui.GameGUI;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Risk {
 
@@ -29,7 +32,14 @@ public class Risk {
 
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        gui.setSize(RiskUtils.GAME_SIZE);
+        gameEngine.createNewGame();
+        Map<String, Color> playerInfo = new HashMap<>();
+        playerInfo.put("red", Color.RED);
+        playerInfo.put("blue", Color.BLUE);
+        playerInfo.put("green", Color.GREEN);
+        gameEngine.createPlayers(playerInfo, "automated");
+
+        gui.setSize(RiskUtils.AUTOMATED_GAME_SIZE);
         gui.setResizable(false);
         gui.setLocation(RiskUtils.getStartScreenPosition());
         gui.setVisible(true);

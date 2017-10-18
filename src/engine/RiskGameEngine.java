@@ -29,7 +29,7 @@ public class RiskGameEngine extends Observable {
     }
 
     public RiskGameEngine() {
-        //System.out.println("here 2");
+//        System.out.println("here 2");
         this.state = State.loadStartScreen;
         game = new RiskGame();
     }
@@ -61,6 +61,11 @@ public class RiskGameEngine extends Observable {
      */
     public void createPlayers(Map<String, Color> playerInfo, String gameName) {
         System.out.println("at createPlayers in RGE, size=" + playerInfo.size() + "; gameName=" + gameName);
+
+//        for (Map.Entry<String, Color> player : playerInfo.entrySet()) {
+//            System.out.println(player.getKey() + " " + player.getValue());
+//        }
+
         if (game.createPlayers(playerInfo, gameName)) {
             this.state = State.assignTerritories;
             this.setChanged();

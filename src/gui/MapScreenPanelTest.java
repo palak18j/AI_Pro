@@ -210,6 +210,7 @@ public class MapScreenPanelTest extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
+//        System.out.println(img.getPreferredSize());
         return new Dimension(img.getPreferredSize());
     }
 

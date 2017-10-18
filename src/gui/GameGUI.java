@@ -158,11 +158,12 @@ public class GameGUI extends JFrame implements Observer {
         } else if (state == State.assignTerritories) {
             System.out.println("state assignT");
 
+//            System.out.println(this.getSize());
             this.changeScreen(mapScreen);
             this.pack();
+//            System.out.println(this.getSize());
             this.setLocation(RiskUtils.getRelativeScreenLocation(0.10, 0.0));
-            mapScreenHandler.initializeMap();
-            //System.out.println("here at END");
+            mapScreenHandler.initializeMap();;
 
         } else if (state == State.assignArmies) {
             System.out.println("state assignA");

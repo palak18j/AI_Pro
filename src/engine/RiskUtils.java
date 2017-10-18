@@ -19,6 +19,7 @@ import java.io.InputStream;
  */
 public final class RiskUtils {
     public final static Dimension GAME_SIZE = new Dimension(512, 347);  //512, 347
+    public final static Dimension AUTOMATED_GAME_SIZE = new Dimension(1280, 822);  //512, 347
     private static final String PATH_DIR = "images/";
     private static final double START_POSITION = 0.25;
 
