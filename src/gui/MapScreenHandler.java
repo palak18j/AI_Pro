@@ -8,6 +8,7 @@
 package gui;
 
 import classes.Player;
+import classes.Territory;
 import engine.RiskGameEngine;
 import engine.RiskGameEngine.State;
 
@@ -15,23 +16,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 
 public class MapScreenHandler implements ActionListener {
 
     private RiskGameEngine model;
     private MapScreenPanelTest view;
-
+    private boolean initialized;
 
     public MapScreenHandler(RiskGameEngine model) {
         this.model = model;
+        this.initialized = false;
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void actionPerformed(ActionEvent event) {
         Component source = (Component) event.getSource();
-
         if (source instanceof JComboBox) {
             if (source.getName().equals("actionFromBox"))
                 handleActionFrom((JComboBox<String>) source, event);
@@ -54,6 +56,35 @@ public class MapScreenHandler implements ActionListener {
         }
     }
 
+    private void updateLabel() {
+        /*
+         * continue while there are territories to assign
+         * else all territories have been taken, advance to second stage
+         */
+
+        if (model.getGame().getUnselectedTerritoriesList().size() > 0) {
+            Player currentPlayer = model.getNextPlayer();
+            view.setLabelAssignTerritories(currentPlayer);
+            view.setNextPlayer(currentPlayer);
+        } else {
+            model.assignArmies();
+        }
+    }
+
+    public void repaintTerritories() {
+        if (model.getState().equals(State.assignTerritories)) {
+            Map<String, Territory> territoriesList = model.getGame().getTerritoriesList();
+
+            for (Territory territory : territoriesList.values()) {
+                if (territory.getOccupant() != null) {
+                    view.addCircle(territory.getName());
+                }
+            }
+
+            updateLabel();
+        }
+    }
+
     /**
      * Handles the logic dealing with comboBox events coming from actionFromBox.
      * These actions involve player selecting his own territory to either
@@ -73,15 +104,7 @@ public class MapScreenHandler implements ActionListener {
             comboBox.removeItem(comboBox.getSelectedItem());
             view.addCircle(territory);
 			
-			/* continue while there are territories to assign */
-            if (comboBox.getItemCount() > 0) {
-                Player currentPlayer = model.getNextPlayer();
-                view.setLabelAssignTerritories(currentPlayer);
-                view.setNextPlayer(currentPlayer);
-            }
-			/* all territories have been taken, advance to second stage */
-            else
-                model.assignArmies();
+			updateLabel();
         }
 		
 		/* assign 1 army to 1 territory, get next player */
@@ -139,6 +162,9 @@ public class MapScreenHandler implements ActionListener {
         }
     }
 
+    public boolean hasInitialized() {
+        return initialized;
+    }
     /**
      * Begins the game by initializing map to allow players to select
      * territories.
@@ -148,6 +174,7 @@ public class MapScreenHandler implements ActionListener {
         view.setMap(model.getGame().getTerritoriesList());
         view.setNextPlayer(currentPlayer);
         view.setLabelAssignTerritories(currentPlayer);
+        this.initialized = true;
     }
 
     /**

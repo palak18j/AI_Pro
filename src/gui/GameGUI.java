@@ -96,7 +96,7 @@ public class GameGUI extends JFrame implements Observer {
      * Method called by update to change panels. Removes currentPanel from
      * contentPane, adds the argument to contentPane, and repaints.
      *
-     * @param newPanel the new panel to be added to contentPane
+     * @param newCurrentPanel the new panel to be added to contentPane
      */
     private void changeScreen(JPanel newCurrentPanel) {
         System.out.println("came here in changeSCREEN 1 ");
@@ -114,7 +114,6 @@ public class GameGUI extends JFrame implements Observer {
 
 
     public void update(Observable obs, Object obj) {
-
         State state = gameEngine.getState();
         System.out.println("came here in update ");
 		/* attack phase of turn */
@@ -157,13 +156,16 @@ public class GameGUI extends JFrame implements Observer {
             this.changeScreen(createPlayersScreen);
         } else if (state == State.assignTerritories) {
             System.out.println("state assignT");
-
-//            System.out.println(this.getSize());
             this.changeScreen(mapScreen);
             this.pack();
-//            System.out.println(this.getSize());
             this.setLocation(RiskUtils.getRelativeScreenLocation(0.10, 0.0));
-            mapScreenHandler.initializeMap();;
+
+            if (!mapScreenHandler.hasInitialized()) {
+                mapScreenHandler.initializeMap();
+            } else if (obj != null && obj instanceof String && obj.equals("pickInitialTerritory")) {
+                mapScreenHandler.repaintTerritories();
+            }
+
 
         } else if (state == State.assignArmies) {
             System.out.println("state assignA");

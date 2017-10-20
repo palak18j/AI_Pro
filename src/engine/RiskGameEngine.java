@@ -57,7 +57,7 @@ public class RiskGameEngine extends Observable {
      * Creates the player objects received from GUI and advances to
      * assign territories state.
      *
-     * @param names
+     * @param gameName
      */
     public void createPlayers(Map<String, Color> playerInfo, String gameName) {
         System.out.println("at createPlayers in RGE, size=" + playerInfo.size() + "; gameName=" + gameName);
@@ -151,7 +151,14 @@ public class RiskGameEngine extends Observable {
             game.addTerritory(territory);
         else
             System.out.println("null player encountered");
+    }
 
+    void pickInitialTerritory(String territory) {
+        System.out.println("Assigning " + territory + " to " + game.getCurrentPlayer().getName());
+        addTerritory(territory);
+
+        this.setChanged();
+        this.notifyObservers("pickInitialTerritory");
     }
 
     public void incrementTroops(String territory) {
