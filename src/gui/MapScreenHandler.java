@@ -181,9 +181,11 @@ public class MapScreenHandler implements ActionListener {
      * Continues with the assigning armies portion of initialization.
      */
     public void assignArmies() {
-        view.assignArmies(model.getNextPlayer());
+        //view.assignArmies(model.getNextPlayer());
+        view.assignArmiesAuto(model.getNextPlayer(),model);
     }
-
+    
+    
     /**
      * Begins a player turn by placing armies
      */

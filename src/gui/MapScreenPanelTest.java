@@ -9,6 +9,8 @@ package gui;
 
 import classes.Player;
 import classes.Territory;
+import engine.RiskGameEngine;
+import engine.RiskGameEngine.State;
 import engine.RiskUtils;
 
 import javax.swing.*;
@@ -22,6 +24,8 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class MapScreenPanelTest extends JPanel {
@@ -334,6 +338,8 @@ public class MapScreenPanelTest extends JPanel {
      * @param territories A list of territories to put in the box.
      */
     public void initActionFromBox(Map<String, Territory> territories) {
+        System.out.println("11");
+       // System.out.println();
         actionFromBox.removeActionListener(handler);
         actionFromBox.removeAllItems();
 
@@ -370,13 +376,90 @@ public class MapScreenPanelTest extends JPanel {
      *
      * @param currentPlayer the current Player.
      */
-    public void assignArmies(Player currentPlayer) {
+    public void assignArmies(Player currentPlayer) { 
         setNextPlayer(currentPlayer);
         initActionFromBox(currentPlayer.getTerritoriesList());
         setLabelPlaceArmies(currentPlayer);
 
     }
-
+    public void assignArmiesAuto(Player currentPlayer,RiskGameEngine model) {
+        System.out.println("inside MSPT.assignArmiesAuto");
+        setNextPlayer(currentPlayer);
+        
+        System.out.println("state here="+model.getState().name());
+        placeArmiesAuto(currentPlayer,model);
+       
+    }
+    public void placeArmiesAuto( Player currentPlayer,RiskGameEngine model )
+	{   
+            
+            while(model.getState()==State.assignArmies){
+                System.out.println("here3 ="+model.getCurrentPlayer().getName());
+                currentPlayer=model.getCurrentPlayer();
+            Map<String, Territory> list=currentPlayer.getTerritoriesList();
+            
+            /*place army to the territory where the neighbors have more armies, if same num of armies in neigh
+            can place randomly chosen territory that player owns*/
+            int most_diff=-1,d=-1,curTerriCount,neigTerriCount;
+            String terr_to_place=null;
+            
+            for(String key :list.keySet()){
+                Territory cur=list.get(key);
+                curTerriCount=cur.getNumArmies();
+                
+                Map<String, Territory> list1=cur.getNeighbors();
+                for(String key1 :list1.keySet()){
+                neigTerriCount=list1.get(key1).getNumArmies();
+                if(neigTerriCount>curTerriCount){
+                    d=neigTerriCount-curTerriCount;
+                    if(d>most_diff)
+                    {
+                    terr_to_place=key;
+                    most_diff=d;
+                    }
+                }
+                }
+                
+            }
+                System.out.println("got terr_to_place="+terr_to_place);
+            if(terr_to_place==null){   
+                int len=list.size(),r;
+                Random rand=new Random();
+                Object[] l=list.keySet().toArray();
+                int numberOfArmies=currentPlayer.getUnplacedArmies();
+                r=rand.nextInt(len);
+                terr_to_place=(String)l[r];
+            }
+            /*HashMap<String, Integer>  //use this logic toplace all armies of user at one turn eg 21 armies at one go
+            plc=new HashMap<String,Integer>();
+            
+            r=rand.nextInt(len);
+                String t=(String)l[r];
+                Territory t1=list.get(t);
+                if(plc.containsKey(t))
+                    plc.put(t, plc.get(t)+1);
+                else
+                    plc.put(t,1);
+               
+            String s1= currentPlayer.getName().toUpperCase();
+            StringBuffer ss=new StringBuffer(s1+" :Army placed as:");
+            for(String s:plc.keySet())
+            {
+                System.out.println(s+" ="+plc.get(s));
+                ss.append("\n"+s+" = "+plc.get(s));
+            }*/
+            String ss=currentPlayer.getName().toUpperCase()+" :Army placed as:\n"+terr_to_place;
+            System.out.println(model.getCurrentPlayer().getName()+" here1 ="+actionFromBox.getItemCount());
+            actionFromBox.setSelectedItem(terr_to_place);
+            JFrame f1=new JFrame();
+            JOptionPane.showMessageDialog(f1, ss);
+            model.notifyObservers();
+            System.out.println(model.getCurrentPlayer().getName()+" here2 ="+actionFromBox.getItemCount());
+               // System.out.println("state="+model.getState().name());
+            
+            }
+	}
+    
     public void placeArmies(Player currentPlayer) {
         endTurnButton.setEnabled(false);
         assignArmies(currentPlayer);
@@ -441,6 +524,7 @@ public class MapScreenPanelTest extends JPanel {
      * Sets up the actionToBox for attack state.
      */
     public void initActionToBox(String attackingTerritory) {
+        //System.out.println("11");
         Territory attackingFrom = territories.get(attackingTerritory);
         Player attackingPlayer = attackingFrom.getOccupant();
         Map<String, Territory> choices = attackingFrom.getNeighbors();

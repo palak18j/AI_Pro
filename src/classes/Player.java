@@ -23,6 +23,7 @@ public class Player {
     private Map<String, Territory> territories;
     private Map<String, Continent> continents;
     private Hand cardHand;
+    private int auto;   //0 if automated 1 if human
     private Color circleColor;
 
     /* track capture for card at end of turn */
