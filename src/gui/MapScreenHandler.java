@@ -94,12 +94,14 @@ public class MapScreenHandler implements ActionListener {
      * @param event the event generated from selection
      */
     private void handleActionFrom(JComboBox<String> comboBox, ActionEvent event) {
-
+        
+        System.out.println("CAME to handleActionFrom");
         String territory = ((String) comboBox.getSelectedItem());
         State state = model.getState();
 		
 		/* assign a territory, get next player */
         if (state == State.assignTerritories) {
+            
             model.addTerritory(territory);
             comboBox.removeItem(comboBox.getSelectedItem());
             view.addCircle(territory);
@@ -110,6 +112,7 @@ public class MapScreenHandler implements ActionListener {
 		/* assign 1 army to 1 territory, get next player */
         else if (state == State.assignArmies) {
 			/* increase troop in territory by 1, decrease currentPlayer by 1*/
+            System.out.println("111");
             model.incrementTroops(territory);
             view.repaint();
 
@@ -123,7 +126,9 @@ public class MapScreenHandler implements ActionListener {
         }
 		/* place all armies remaining and then begin turn */
         else if (state == State.placeArmies) {
+            System.out.println("222:"+territory);
             model.incrementTroops(territory);
+            //view.repaint();
             view.setLabelPlaceArmies(model.getCurrentPlayer());
 			
 			/* all armies placed, change to attack phase  */
@@ -133,6 +138,7 @@ public class MapScreenHandler implements ActionListener {
 		
 		/* selecting territory to attack from, load adjacencies */
         else if (state == State.attack) {
+            System.out.println("333");
             view.initActionToBox(territory);
         }
 		
@@ -182,7 +188,7 @@ public class MapScreenHandler implements ActionListener {
      */
     public void assignArmies() {
         //view.assignArmies(model.getNextPlayer());
-        view.assignArmiesAuto(model.getNextPlayer(),model);
+        view.assignArmiesAutoInit(model.getNextPlayer(),model);
     }
     
     
@@ -192,8 +198,8 @@ public class MapScreenHandler implements ActionListener {
     public void placeArmies() {
         if (model.getCardStatus() == true)
             view.showCards(model.getGame().getCurrentPlayer(), true);
-
-        view.placeArmies(model.getCurrentPlayer());
+        //   view.placeArmies(model.getCurrentPlayer());
+        view.placeArmiesAuto(model.getCurrentPlayer(),model);
     }
 
     /**
@@ -202,6 +208,7 @@ public class MapScreenHandler implements ActionListener {
      */
     public void updateMove() {
         Player currentPlayer = model.getCurrentPlayer();
+        System.out.println("in handler -updateMove");
         view.updateMove(currentPlayer);
     }
 
