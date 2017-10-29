@@ -346,7 +346,7 @@ public class MapScreenPanelTest extends JPanel {
         for (String s : territories.keySet()) {
             actionFromBox.addItem(s);
         }
-
+        actionFromBox.setSelectedIndex(-1);
         actionFromBox.addActionListener(handler);
         
         this.updateMap();
@@ -542,6 +542,7 @@ public class MapScreenPanelTest extends JPanel {
                 
                 //model.incrementTroops(terr_to_place);
                 model.notifyObservers();
+               // initActionFromBox(currentPlayer.getTerritoriesList());
                 //this.updateMap();
                 //this.updateUI();
                   System.out.println("here31="+currentPlayer.getUnplacedArmies());
